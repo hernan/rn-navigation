@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   DatePickerAndroid,
   Text,
+  TextInput,
   TimePickerAndroid,
   TouchableHighlight,
   StyleSheet,
@@ -14,8 +15,12 @@ class DayEntry extends Component {
     this.state = {
       date: null,
       time: null,
+      carbs: null,
+      note: null
     }
 
+    this._onCarbsChange = this._onCarbsChange.bind(this)
+    this._onNoteChange = this._onNoteChange.bind(this)
   }
 
   _onDateFocus = async (stateKey, options) => {
@@ -51,6 +56,13 @@ class DayEntry extends Component {
     }
   }
 
+  _onCarbsChange(text) {
+    this.setState({carbs: text})
+  }
+
+  _onNoteChange(text) {
+    this.setState({note: text})
+  }
 
   render() {
     let currDate
@@ -64,17 +76,37 @@ class DayEntry extends Component {
 
         <TouchableHighlight onPress={this._onDateFocus}>
           <View collapsable={false} style={styles.inputContainer}>
-            <Text style={styles.label}>Fecha</Text>
+            <Text style={styles.label}>Fecha:</Text>
             <Text style={styles.input}>{currDate}</Text>
           </View>
         </TouchableHighlight>
 
         <TouchableHighlight onPress={this._onTimeFocus}>
           <View collapsable={false} style={styles.inputContainer}>
-            <Text style={styles.label}>Hora</Text>
+            <Text style={styles.label}>Hora:</Text>
             <Text style={styles.input}>{this.state.time}</Text>
           </View>
         </TouchableHighlight>
+        
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Carbs:</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={this.state.carbs}
+            onChangeText={this._onCarbsChange}></TextInput>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Nota:</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="default"
+            multiline={true}
+            value={this.state.note}
+            onChangeText={this._onNoteChange}
+            numberOfLines={4}></TextInput>
+        </View>
 
       </View>
     )
@@ -93,8 +125,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 10,
-    height: 40,
-    paddingLeft: 10
+    minHeight: 40,
+    paddingLeft: 10,
+    paddingRight: 10
   },
 
   label: {
