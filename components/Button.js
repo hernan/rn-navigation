@@ -1,21 +1,22 @@
 import React from 'react'
-import { Text, TouchableHighlight, StyleSheet } from 'react-native'
+import { Text, TouchableNativeFeedback, StyleSheet, View } from 'react-native'
 
 export default ({label, onPress}) => (
-  <TouchableHighlight
-    underlayColor='#35b5ff'
-    onPress={onPress} style={styles.button}>
-    <Text style={styles.label}>{label}</Text>
-  </TouchableHighlight>
+  <TouchableNativeFeedback onPress={onPress} useForeground={true}>
+    <View style={styles.button}>
+      <Text style={styles.label}>{label}</Text>
+    </View>
+  </TouchableNativeFeedback>
 )
 
 const styles = StyleSheet.create({
   button: {
-    height: 70,
+    height: 50,
     backgroundColor: '#22a3ed',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30
+    marginTop: 30,
+    elevation: 4
   },
   label: {
     color: 'white'

@@ -1,9 +1,9 @@
 import React from 'react'
 import { 
+  Button,
   View,
   Text
 } from 'react-native'
-import Button from './Button'
 import { container, textTitle, textAlignCenter } from './styles'
 
 const route = {
@@ -17,7 +17,10 @@ const route = {
 const Home = ({_handleNavigate}) => (
   <View style={container}>
     <Text style={[textTitle, textAlignCenter]}>Home</Text>
-    <Button onPress={() => _handleNavigate(route)} label='Go To About' />
+    
+    <Button 
+      onPress={ () => _handleNavigate(route) }
+      title="Go To About" />
   </View>
 )
 
