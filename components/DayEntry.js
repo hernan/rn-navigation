@@ -36,6 +36,7 @@ class DayEntry extends Component {
 
   _onTimeFocus = async (stateKey, options) => {
     try {
+      let options = Object.assign({}, options, {is24Hour: true})
       const {action, minute, hour} = await TimePickerAndroid.open(options);
 
       if (action === TimePickerAndroid.dismissedAction) {
