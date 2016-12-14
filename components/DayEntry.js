@@ -8,6 +8,7 @@ import {
   StyleSheet,
   View
 } from 'react-native'
+import * as style from './styles'
 
 class DayEntry extends Component {
   constructor(props) {
@@ -72,35 +73,35 @@ class DayEntry extends Component {
     }
 
     return(
-      <View style={styles.viewContainer}>
+      <View style={style.container}>
 
         <TouchableHighlight onPress={this._onDateFocus}>
           <View collapsable={false} style={styles.inputContainer}>
-            <Text style={styles.label}>Fecha:</Text>
-            <Text style={styles.input}>{currDate}</Text>
+            <Text style={style.label}>Fecha:</Text>
+            <Text style={style.input}>{currDate}</Text>
           </View>
         </TouchableHighlight>
 
         <TouchableHighlight onPress={this._onTimeFocus}>
           <View collapsable={false} style={styles.inputContainer}>
-            <Text style={styles.label}>Hora:</Text>
-            <Text style={styles.input}>{this.state.time}</Text>
+            <Text style={style.label}>Hora:</Text>
+            <Text style={style.input}>{this.state.time}</Text>
           </View>
         </TouchableHighlight>
         
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Carbs:</Text>
+          <Text style={style.label}>Carbs:</Text>
           <TextInput
-            style={styles.input}
+            style={style.input}
             keyboardType="numeric"
             value={this.state.carbs}
             onChangeText={this._onCarbsChange}></TextInput>
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Nota:</Text>
+          <Text style={style.label}>Nota:</Text>
           <TextInput
-            style={styles.input}
+            style={style.input}
             keyboardType="default"
             multiline={true}
             value={this.state.note}
@@ -114,32 +115,16 @@ class DayEntry extends Component {
 }
 
 const styles = StyleSheet.create({
-  viewContainer: {
-    padding: 16,
-    backgroundColor: '#aaa',
-  },
-
   inputContainer: {
     alignSelf: 'stretch',
-    backgroundColor: 'skyblue',
+    backgroundColor: '#e5e5e5',
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 10,
     minHeight: 40,
     paddingLeft: 10,
-    paddingRight: 10
-  },
-
-  label: {
-    flex: 1,
-    marginRight: 10,
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-
-  input: {
-    flex: 2,
-    fontSize: 16
+    paddingRight: 10,
+    borderRadius: 3
   }
 })
 
