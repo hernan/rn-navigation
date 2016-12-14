@@ -27,7 +27,7 @@ class DayEntry extends Component {
       }
 
       let date = new Date(year, month, day);
-      this.setState({date: date.toISOString()})
+      this.setState({date: date.getTime()})
 
     } catch({code, message}) {
       console.warn(`Error in DayEntry.DateTimePicker ${stateKey}`, message)
@@ -53,13 +53,19 @@ class DayEntry extends Component {
 
 
   render() {
+    let currDate
+    if (this.state.date) {
+      let cdate = new Date(this.state.date)
+      currDate = `${cdate.getDate()}/${cdate.getMonth() + 1}/${cdate.getFullYear()}`
+    }
+
     return(
       <View style={styles.viewContainer}>
 
         <TouchableHighlight onPress={this._onDateFocus}>
           <View collapsable={false} style={styles.inputContainer}>
             <Text style={styles.label}>Fecha</Text>
-            <Text style={styles.input}>{this.state.date && this.state.date.toString()}</Text>
+            <Text style={styles.input}>{currDate}</Text>
           </View>
         </TouchableHighlight>
 
